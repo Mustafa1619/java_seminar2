@@ -82,7 +82,7 @@ public class Course {
 	}
 	
 	public String toString() {
-		return cId + ": " + title + " " + creditPoints + " " + professor;
+		return cId + ": " + title + " " + creditPoints + " " + professor.getName().charAt(0)+ ". " + professor.getSurname();
 	}
 	
 	
