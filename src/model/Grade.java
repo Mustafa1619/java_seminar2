@@ -54,8 +54,25 @@ public class Grade {
 		}
 	}
 
+	
+	public Grade() {
+		setGId();
+		setGrValue(0);
+		setStudent(new Student());
+		setCourse(new Course());
+		
+	}
 
+	public Grade(int inputGrValue, Student inputStudent, Course inputCourse) {
+		setGId();
+		setGrValue(inputGrValue);
+		setStudent(inputStudent);
+		setCourse(inputCourse);
+	}
 
+	public String toString() {
+		return  gId + ": " + grValue + "( " + student.getName().charAt(0) + ". " + student.getSurname() + "(" + course.getTitle();
+	}
 
 
 }
