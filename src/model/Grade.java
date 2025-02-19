@@ -71,7 +71,7 @@ public class Grade {
 	}
 
 	public String toString() {
-		return  gId + ": " + grValue + "( " + student.getName().charAt(0) + ". " + student.getSurname() + "(" + course.getTitle();
+		return  gId + ": " + grValue + "( " + student.getName().charAt(0) + ". " + student.getSurname() + "" + course.getTitle();
 	}
 
 
