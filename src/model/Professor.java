@@ -41,10 +41,10 @@ public class Professor {
 
 	public void setSurname(String inputSurname) {
 		if(inputSurname!= null && inputSurname.matches("[A-Z]{1}[a-z]{3,15}")) {
-			name = inputSurname;
+			surname = inputSurname;
 		}
 		else {
-			name = "No Name";
+			surname = "No Surname";
 		}
 	}
 

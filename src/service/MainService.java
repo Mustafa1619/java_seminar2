@@ -3,7 +3,7 @@ package service;
 import model.Degree;
 import model.Professor;
 import model.Student;
-
+import model.Course;
 public class MainService {
 
 	public static void main(String[] args) {
@@ -23,9 +23,17 @@ public class MainService {
 		Professor p1 = new Professor();
 		System.out.println(p1);
 		
-		Professor p2 = new Professor("Karina","Skirmante",Degree.bsc);
+		Professor p2 = new Professor("Karina","Skirmante", Degree.dr);
 		System.out.println(p2);
 		
+		Course c1 = new Course();
+		System.out.println(c1);
+		
+		Course c2 = new Course("JAVA Programming", 6, p2);
+		System.out.println(c2);
+		
+		Course c3 = new Course("6456384654135416dsfseada64354135854", -4, null);
+		System.out.println(c3);
 	}
 
 }
