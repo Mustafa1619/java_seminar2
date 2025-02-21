@@ -4,11 +4,20 @@ import model.Degree;
 import model.Grade;
 import model.Professor;
 import model.Student;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import model.Course;
 public class MainService {
 
+	
+	private static ArrayList<Student> allStudents = new ArrayList<Student>();
+	private static ArrayList<Professor> allProfessors = new ArrayList<Professor>();
+	private static ArrayList<Course> allCourses= new ArrayList<Course>();
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		Student st1 = new Student();
 		System.out.println(st1.toString());
 		
@@ -21,11 +30,19 @@ public class MainService {
 		Student st4 = new Student(null, null);
 		System.out.println(st4);
 		
+		allStudents.addAll(Arrays.asList(st1, st2, st3, st4));
+		System.out.println(allStudents);
+		
+		
+		
 		Professor p1 = new Professor();
 		System.out.println(p1);
 		
 		Professor p2 = new Professor("Karina","Skirmante", Degree.dr);
 		System.out.println(p2);
+		
+		allProfessors.addAll(Arrays.asList(p1,p2));
+		
 		
 		Course c1 = new Course();
 		System.out.println(c1);
@@ -35,6 +52,8 @@ public class MainService {
 		
 		Course c3 = new Course("6456384654135416dsfseada64354135854", -4, null);
 		System.out.println(c3);
+		
+		allCourses.addAll(Arrays.asList(c1,c2,c3));
 		
 		Grade g1 = new Grade();
 		System.out.println(g1);
