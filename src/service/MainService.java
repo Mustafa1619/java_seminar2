@@ -20,16 +20,16 @@ public class MainService {
 	public static void main(String[] args) {
 		
 		Student st1 = new Student();
-		System.out.println(st1.toString());
+		//System.out.println(st1.toString());
 		
 		Student st2 = new Student("John","Green");
-		System.out.println(st2);
+		//System.out.println(st2);
 		
 		Student st3 = new Student("43567","8654132");
-		System.out.println(st3);
+		//System.out.println(st3);
 		
 		Student st4 = new Student(null, null);
-		System.out.println(st4);
+		//System.out.println(st4);
 		
 		allStudents.addAll(Arrays.asList(st1, st2, st3, st4));
 		System.out.println(allStudents);
@@ -37,10 +37,10 @@ public class MainService {
 		
 		
 		Professor p1 = new Professor();
-		System.out.println(p1);
+		//System.out.println(p1);
 		
 		Professor p2 = new Professor("Karina","Skirmante", Degree.dr);
-		System.out.println(p2);
+		//System.out.println(p2);
 		
 		allProfessors.addAll(Arrays.asList(p1,p2));
 		//System.out.println(allProfessors);
@@ -52,27 +52,35 @@ public class MainService {
 			
 			System.out.println(allProfessors);
 			updateProfessorByID(10000, "Vairis", "Caune", Degree.dr);
+			
+		//	deleteProfessorByID(10002);
+			
+			System.out.println("Professors with dr: " + filterProfessorByDegree(Degree.dr));
+			
 		}catch( Exception exception) {
 			System.out.println(exception);
 		}
 		
 		
 		Course c1 = new Course();
-		System.out.println(c1);
+		//System.out.println(c1);
 		
 		Course c2 = new Course("JAVA Programming", 6, p2);
-		System.out.println(c2);
+		//System.out.println(c2);
 		
 		Course c3 = new Course("6456384654135416dsfseada64354135854", -4, null);
-		System.out.println(c3);
+		//System.out.println(c3);
 		
 		allCourses.addAll(Arrays.asList(c1,c2,c3));
 		System.out.println(allCourses);
+		System.out.println("Failed Grades: " + filterFailedGrades());
+		
 		
 		Grade g1 = new Grade();
-		System.out.println(g1);
+		//System.out.println(g1);
 		
 		Grade g2 = new Grade(3, st2, c2); 
+		Grade g3 = new Grade(8, st2, c1); 
 		allGrades.addAll(Arrays.asList(g1, g2));
 		System.out.println(allGrades);
 	}
@@ -87,7 +95,9 @@ public class MainService {
 			if(tempP.getName().equals(name) && tempP.getSurname().equals(surname) && tempP.getDegree().equals(degree)){
 				throw new Exception("This professor is already registered");
 			}
+			
 		}
+		 
 	}
 	
 	public static Professor retrieveProfessorByID(long id) throws Exception {
@@ -121,9 +131,58 @@ public class MainService {
 		}
 	}
 	
+	public static void deleteProfessorByID(int id) throws Exception{
+		
+		Professor tempP = retrieveProfessorByID(id);
+		allProfessors.remove(tempP);
+		
+		
+	}
 	
+	public static ArrayList<Professor> filterProfessorByDegree(Degree degree)throws Exception{
+		if(degree == null) {
+			throw new Exception("The degree is null");
+			
+		}
+		ArrayList<Professor> results = new ArrayList<Professor>();
+			for(Professor tempP : allProfessors){
+				if(tempP.getDegree().equals(degree)) {
+					results.add(tempP);
+					
+				}
+			}				
+		return results;		
+	}
 	
+	public static ArrayList<Grade> filterFailedGrades(){
+		
+		ArrayList<Grade> results = new ArrayList<Grade>();
+		
+		for(Grade tempG : allGrades){
+			if(tempG.getGrValue() < 4) {
+				results.add(tempG);		
+			}		
+		}
+		return results;
+	}
 	
+	public static float calculateAvgGradeForStudentByID(int id) throws Exception{
+		if(id<0) {
+			throw new Exception("Id can't be smaller than zero");
+		}
+		
+		int howManyGrades = 0 ;
+		float sum = 0;
+		
+		
+		for(Grade tempG : allGrades) {
+			if(tempG.getStudent().getStID()==id) {
+				howManyGrades++;
+				sum += tempG.getGrValue();
+			}
+		}
+		return sum/howManyGrades;
+	}
 	
 	
 	
