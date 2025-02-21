@@ -43,6 +43,18 @@ public class MainService {
 		System.out.println(p2);
 		
 		allProfessors.addAll(Arrays.asList(p1,p2));
+		//System.out.println(allProfessors);
+		try {
+			createProfessor("Estere", "Vitola", Degree.mg);
+			createProfessor("Karlis", "Immers", Degree.mg);
+			
+			System.out.println("Retrieve example: " + retrieveProfessorByID(10001));
+			
+			System.out.println(allProfessors);
+			updateProfessorByID(10000, "Vairis", "Caune", Degree.dr);
+		}catch( Exception exception) {
+			System.out.println(exception);
+		}
 		
 		
 		Course c1 = new Course();
@@ -55,12 +67,69 @@ public class MainService {
 		System.out.println(c3);
 		
 		allCourses.addAll(Arrays.asList(c1,c2,c3));
+		System.out.println(allCourses);
 		
 		Grade g1 = new Grade();
 		System.out.println(g1);
 		
 		Grade g2 = new Grade(3, st2, c2); 
 		allGrades.addAll(Arrays.asList(g1, g2));
+		System.out.println(allGrades);
 	}
 
+	public static void createProfessor(String name, String surname, Degree degree) throws Exception  {
+		if(name ==null||surname==null||degree == null) {
+			throw new Exception("Input params can not be null");
+		}
+		
+		for(Professor tempP : allProfessors) {
+			
+			if(tempP.getName().equals(name) && tempP.getSurname().equals(surname) && tempP.getDegree().equals(degree)){
+				throw new Exception("This professor is already registered");
+			}
+		}
+	}
+	
+	public static Professor retrieveProfessorByID(long id) throws Exception {
+		if(id<10000) {
+			throw new Exception("Id should be positive and larger than 9999");
+		}
+		
+		for(Professor tempP : allProfessors) {
+			if(tempP.getpId()==id) {
+				return tempP;
+			}
+		}
+			
+		throw new Exception("Professor is not found");
+		
+		
+	}
+	
+	public static void updateProfessorByID(long id,String name, String surname, Degree degree) throws Exception{
+		Professor tempP = retrieveProfessorByID(id);
+		if(name!= null && !tempP.getName().equals(name)) {
+			tempP.setName(name);
+		}
+		
+		if(surname!= null && !tempP.getSurname().equals(surname)) {
+			tempP.setSurname(surname);
+		}
+		
+		if(degree!= null && !tempP.getDegree().equals(degree)) {
+			tempP.setDegree(degree);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
