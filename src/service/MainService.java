@@ -15,6 +15,7 @@ public class MainService {
 	private static ArrayList<Student> allStudents = new ArrayList<Student>();
 	private static ArrayList<Professor> allProfessors = new ArrayList<Professor>();
 	private static ArrayList<Course> allCourses= new ArrayList<Course>();
+	private static ArrayList<Grade> allGrades= new ArrayList<Grade>();
 	
 	public static void main(String[] args) {
 		
@@ -59,6 +60,7 @@ public class MainService {
 		System.out.println(g1);
 		
 		Grade g2 = new Grade(3, st2, c2); 
+		allGrades.addAll(Arrays.asList(g1, g2));
 	}
 
 }
